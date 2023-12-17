@@ -5,13 +5,19 @@
         Select Number of Questions: {{ selectedAmount }}
       </summary>
       <ul
-        class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md w-full"
+        class="p-2 shadow menu text-center dropdown-content z-[1] bg-base-100 rounded-md w-full"
       >
-        <li v-for="n in questionAmount" :key="n" @click="closeDropdown(n)">
+        <li
+          v-for="n in questionAmount"
+          :key="n"
+          @click="closeDropdown(n)"
+          class="text-center"
+        >
           <a>{{ n }}</a>
         </li>
       </ul>
     </details>
+    <!-- GENRE DROPDOWN -->
     <details class="dropdown w-2/3 mt-8" ref="dropdownDetails2">
       <summary class="m-1 btn w-full h-16">
         Select Genre: {{ selectedGenre.name }}

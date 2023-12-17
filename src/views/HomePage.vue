@@ -29,19 +29,25 @@
         Start Trivia
       </button>
     </div> -->
-    <div v-if="isLoading" class="isLoading">
+    <!-- <div v-if="isLoading" class="isLoading">
       <div v-for="q in Questions" :key="q.question" class="q-loop pt-6">
         <div class="question">
           {{ q.question }}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script setup>
 import TriviaSettings from "../components/TriviaSettings.vue";
 
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useTriviaStore } from "../store/TriviaStore";
+
+const store = useTriviaStore();
+
+const router = useRouter();
 const isLoading = ref(false);
 let Questions = ref([]);
 const selectedAmount = ref(10);
@@ -74,6 +80,10 @@ const startGame = async () => {
   } catch (error) {
     console.error(error);
   }
+
+  store.setQuestions(Questions);
+  // Push to the trivia route with state
+  router.push("trivia");
 };
 
 const updateNumQuestions = (selectedValue) => {

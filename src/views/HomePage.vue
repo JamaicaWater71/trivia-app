@@ -1,24 +1,39 @@
 <template>
-  <h1 class="text-center">Welcome to the Trivia Game</h1>
-  <div class="settings-container flex justify-center my-8">
-    <TriviaSettings
-      @num-selected="updateNumQuestions"
-      @genre-selected="updateGenre"
-      @difficulty-selected="updateDifficulty"
-    />
-  </div>
-  <div class="button flex justify-center">
-    <button
-      @click="startGame"
-      class="inline-block cursor-pointer rounded-md bg-blue-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
+  <div
+    class="page w-full h-full flex flex-col items-center bg-violet-50 text-black"
+  >
+    <div class="text-center py-6 font-semibold text-xl">
+      Welcome to the Trivia Game
+    </div>
+    <div
+      class="settings-container py-8 w-full flex flex-col justify-center items-center my-8 bg-violet-300 rounded-md"
     >
-      StartGame
-    </button>
-  </div>
-  <div v-if="isLoading" class="isLoading">
-    <div v-for="q in Questions" :key="q.question" class="q-loop pt-6">
-      <div class="question">
-        {{ q.question }}
+      <TriviaSettings
+        @num-selected="updateNumQuestions"
+        @genre-selected="updateGenre"
+        @difficulty-selected="updateDifficulty"
+      />
+
+      <button
+        @click="startGame"
+        class="block cursor-pointer w-40 my-8 rounded-md bg-blue-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
+      >
+        Start Trivia
+      </button>
+    </div>
+    <!-- <div class="button flex justify-center">
+      <button
+        @click="startGame"
+        class="inline-block cursor-pointer rounded-md bg-blue-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
+      >
+        Start Trivia
+      </button>
+    </div> -->
+    <div v-if="isLoading" class="isLoading">
+      <div v-for="q in Questions" :key="q.question" class="q-loop pt-6">
+        <div class="question">
+          {{ q.question }}
+        </div>
       </div>
     </div>
   </div>

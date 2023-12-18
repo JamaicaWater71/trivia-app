@@ -41,7 +41,7 @@
 <script setup>
 import TriviaSettings from "../components/TriviaSettings.vue";
 
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useTriviaStore } from "../store/TriviaStore";
 
@@ -51,7 +51,7 @@ const router = useRouter();
 const isLoading = ref(false);
 let Questions = ref([]);
 const selectedAmount = ref(10);
-const selectedGenre = ref([]);
+const selectedGenre = ref({ id: -1, name: "Any Category" });
 const selectedDifficulty = ref("any difficulty");
 
 const startGame = async () => {

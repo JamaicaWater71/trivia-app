@@ -27,6 +27,9 @@ const hasAnswered = ref(false);
 
 const answerChoice = [question.correct_answer, ...question.incorrect_answers];
 correctAnswer.value = question.correct_answer;
+
+const emit = defineEmits(["questionResult"]);
+
 const decodeHtml = (html) => {
   const txt = document.createElement("textarea");
   txt.innerHTML = html;
@@ -53,6 +56,11 @@ const shuffle = (array) => {
 const selectedChoice = (answer) => {
   if (!hasAnswered.value) {
     selectedAnswer.value = answer;
+    if (answer === correctAnswer.value) {
+      emit("questionResult", "correct");
+    } else {
+      emit("questionResult", "incorrect");
+    }
     store.setSelectedOption(selectedAnswer.value);
     hasAnswered.value = true;
   }

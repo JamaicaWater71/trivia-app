@@ -6,12 +6,12 @@
     >
       <!-- Progress bar -->
       <div class="flex justify-between mb-1 w-full">
-        <span class="text-base font-medium text-blue-700 dark:text-white w-full"
+        <span class="text-lg font-bold text-blue-700 dark:text-white w-full"
           >{{ currentQuestionIndex + 1 }}/{{ questions.length }}</span
         >
-        <span class="text-sm font-medium text-blue-700 dark:text-white"
-          >45%</span
-        >
+        <span class="text-lg font-bold text-blue-700 w-36 dark:text-white"
+          >SCORE: {{ score }}/{{ questions.length }}
+        </span>
       </div>
       <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
         <div
@@ -34,6 +34,7 @@
         <AnswerChoices
           :question="questions[currentQuestionIndex]"
           :key="currentQuestionIndex"
+          @question-result="updateScore"
         />
       </div>
       <button
@@ -60,26 +61,31 @@ import AnswerChoices from "../components/AnswerChoices.vue";
 const store = useTriviaStore();
 const router = useRouter();
 const questions = ref([]);
-const answerChoices = ref([]);
 const currentQuestionIndex = ref(0);
+const score = ref(0);
 
 onMounted(() => {
   questions.value = store.getQuestions;
   // answerChoices.value = [...]
 });
 
-function nextQuestion() {
+const nextQuestion = () => {
   if (currentQuestionIndex.value < questions.value.length - 1) {
     if (store.getSelectedOption) {
       currentQuestionIndex.value++;
       store.setSelectedOption(null);
     }
   }
-}
+};
 
-function finishQuiz() {
+const updateScore = (result) => {
+  if (result === "correct") {
+    score.value += 1;
+  }
+};
+const finishQuiz = () => {
   router.push("/results");
-}
+};
 </script>
 
 <style scoped></style>

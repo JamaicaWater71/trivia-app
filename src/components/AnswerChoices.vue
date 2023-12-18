@@ -3,7 +3,7 @@
     <div
       v-for="(option, index) in shuffledChoices"
       :key="index"
-      class="h-12 w-full font-semibold cursor-pointer my-4 rounded-md flex items-center px-4"
+      class="h-14 w-full font-semibold cursor-pointer my-4 rounded-md flex items-center px-4 hover:text-xl"
       :class="getClass(option)"
       @click="selectedChoice(option)"
     >
@@ -21,9 +21,7 @@ const decoded = ref([]);
 const shuffledChoices = ref([]);
 const correctAnswer = ref();
 const selectedAnswer = ref("");
-const selected = ref(null);
 const hasAnswered = ref(false);
-// const answerChoice = [question.correct_answer, ...question.incorrect_answers];
 
 const answerChoice = [question.correct_answer, ...question.incorrect_answers];
 correctAnswer.value = question.correct_answer;

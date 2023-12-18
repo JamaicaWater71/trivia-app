@@ -1,12 +1,12 @@
 <template>
   <div
-    class="page w-full h-full flex flex-col items-center bg-violet-50 text-black"
+    class="page w-full h-full flex flex-col items-center bg-violet-100 text-black"
   >
-    <div class="text-center py-6 font-semibold text-xl">
+    <div class="text-center py-6 font-bold text-xl">
       Welcome to the Trivia Game
     </div>
     <div
-      class="settings-container py-8 w-full flex flex-col justify-center items-center my-8 bg-violet-300 rounded-md"
+      class="settings-container py-8 w-11/12 flex flex-col justify-center items-center my-8 bg-violet-600 rounded-md"
     >
       <TriviaSettings
         @num-selected="updateNumQuestions"
@@ -14,13 +14,20 @@
         @difficulty-selected="updateDifficulty"
       />
 
-      <button
+      <!-- <button
         @click="startGame"
-        class="block cursor-pointer w-40 my-8 rounded-md bg-blue-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
+        class="block cursor-pointer w-40 my-8 rounded-md bg-pink-400 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-pink-500"
       >
         Start Trivia
-      </button>
+      </button> -->
     </div>
+    <button
+      @click="startGame"
+      class="block cursor-pointer w-40 my-4 rounded-md bg-pink-400 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-pink-500"
+    >
+      Start Trivia
+    </button>
+    <!-- <div class="">Done using Trivia open API</div> -->
     <!-- <div class="button flex justify-center">
       <button
         @click="startGame"
@@ -52,7 +59,7 @@ const isLoading = ref(false);
 let Questions = ref([]);
 const selectedAmount = ref(10);
 const selectedGenre = ref({ id: -1, name: "Any Category" });
-const selectedDifficulty = ref("any difficulty");
+const selectedDifficulty = ref("Any Difficulty");
 
 const startGame = async () => {
   try {
@@ -62,7 +69,7 @@ const startGame = async () => {
     if (selectedGenre.value.id !== -1) {
       apiUrl += `&category=${selectedGenre.value.id}`;
     }
-    if (selectedDifficulty.value !== "any difficulty") {
+    if (selectedDifficulty.value !== "Any Difficulty") {
       apiUrl += `&difficulty=${selectedDifficulty.value}`;
     }
     const data = await fetch(apiUrl);

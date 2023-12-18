@@ -1,8 +1,9 @@
 <template>
   <div class="container flex flex-col items-center">
+    <!-- QUESTION AMOUNT DROPDOWN -->
     <details class="dropdown w-2/3 mt-4" ref="dropdownDetails1">
-      <summary class="m-1 btn w-full h-16 text-lg">
-        Select Number of Questions: {{ selectedAmount }}
+      <summary class="m-1 btn w-full h-16 text-md font-semibold md:text-lg">
+        Select Num. of Questions: {{ selectedAmount }}
       </summary>
       <ul
         class="p-2 shadow menu text-center dropdown-content z-[1] bg-base-100 rounded-md w-full"
@@ -19,7 +20,7 @@
     </details>
     <!-- GENRE DROPDOWN -->
     <details class="dropdown w-2/3 mt-8" ref="dropdownDetails2">
-      <summary class="m-1 btn w-full h-16 text-lg">
+      <summary class="m-1 btn w-full h-16 text-md font-semibold md:text-lg">
         Select Genre: {{ selectedGenre.name }}
       </summary>
       <ul
@@ -29,15 +30,16 @@
           v-for="genre in triviaGenres"
           :key="genre.id"
           @click="closeDropdown2(genre)"
-          class="py-2 text-center font-semibold cursor-pointer hover:bg-gray-200 rounded-md"
+          class="py-2 px-2 font-semibold cursor-pointer hover:bg-gray-200 rounded-md"
         >
           <a>{{ genre.name }}</a>
         </li>
       </ul>
     </details>
+    <!-- DIFFICULTY DROPDOWN -->
     <details class="dropdown w-2/3 mt-8" ref="dropdownDetails3">
-      <summary class="m-1 btn w-full h-16 text-lg">
-        Select Difficulty: {{ selectedDifficulty }}
+      <summary class="m-1 btn w-full h-16 text-md font-semibold md:text-lg">
+        Select Difficulty: {{ capitalizeWords(selectedDifficulty) }}
       </summary>
       <ul
         class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-md w-full"
@@ -48,7 +50,7 @@
           @click="closeDropdown3(d)"
           class="text-center font-semibold"
         >
-          <a>{{ d }}</a>
+          <a>{{ capitalizeWords(d) }}</a>
         </li>
       </ul>
     </details>
@@ -63,8 +65,8 @@ const dropdownDetails3 = ref(null);
 const selectedAmount = ref(10);
 const selectedGenre = ref({ id: -1, name: "Any Category" });
 const questionAmount = [5, 10, 15, 20, 25, 30];
-const difficulty = ["any difficulty", "easy", "medium", "hard"];
-const selectedDifficulty = ref("any difficulty");
+const difficulty = ["Any Difficulty", "easy", "medium", "hard"];
+const selectedDifficulty = ref("Any Difficulty");
 
 const emit = defineEmits([
   "numSelected",
@@ -98,5 +100,13 @@ const closeDropdown3 = (difficulty) => {
     dropdownDetails3.value.open = false;
   }
 };
+
+//capitalises first letter of each word in string;
+function capitalizeWords(str) {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 </script>
 <style scoped></style>

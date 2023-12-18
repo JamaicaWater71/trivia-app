@@ -3,7 +3,7 @@
     <div
       v-for="(option, index) in shuffledChoices"
       :key="index"
-      class="options h-12 w-full font-semibold bg-violet-200 my-4 rounded-md flex items-center px-4"
+      class="h-12 w-full font-semibold cursor-pointer my-4 rounded-md flex items-center px-4"
       :class="getClass(option)"
       @click="selectedChoice(option)"
     >
@@ -54,14 +54,15 @@ const selectedChoice = (answer) => {
   if (!hasAnswered.value) {
     selectedAnswer.value = answer;
     store.setSelectedOption(selectedAnswer.value);
+    hasAnswered.value = true;
   }
-  hasAnswered.value = true;
 };
 
 const getClass = (option) => {
-  if (option === selectedAnswer.value) {
-    return option === correctAnswer.value ? "bg-green-500" : "bg-red-500"; // Correct or incorrect selection
+  if (option == selectedAnswer.value) {
+    return option === correctAnswer.value ? "bg-green-500" : "bg-red-500";
   }
+  return "bg-violet-200";
 };
 decoded.value = answerChoice.map((choice) => {
   return decodeHtml(choice);

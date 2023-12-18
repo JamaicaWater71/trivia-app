@@ -22,13 +22,13 @@
         ></div>
       </div>
       <div
-        class="question w-full h-32 bg-violet-600 text-white p-2 my-4 rounded-md"
+        class="question w-full h-32 font-bold text-lg text-white bg-violet-600 p-2 my-4 rounded-md"
       >
         {{ questions[currentQuestionIndex].question }}
       </div>
-      <!-- You can add your answer options here -->
+      <!-- answer options -->
       <div
-        class="choices-container bg-violet-600 w-full flex justify-center rounded-md"
+        class="choices-container bg-violet-600 w-full flex justify-center rounded-md py-8"
       >
         <AnswerChoices
           :question="questions[currentQuestionIndex]"

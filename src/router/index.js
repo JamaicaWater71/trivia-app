@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue';
 import TriviaQuestions from '../views/TriviaQuestions.vue';
+import ResultsView from '../views/ResultsView.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +16,11 @@ const router = createRouter({
       path: '/trivia',
       name: 'trivia',
       component: TriviaQuestions
+    },
+    {
+      path: '/results',
+      name: 'results',
+      component: ResultsView
     },
   ]
 })

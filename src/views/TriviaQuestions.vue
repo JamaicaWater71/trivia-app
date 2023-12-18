@@ -9,13 +9,13 @@
         <span class="text-lg font-bold text-blue-700 dark:text-white w-full"
           >{{ currentQuestionIndex + 1 }}/{{ questions.length }}</span
         >
-        <span class="text-lg font-bold text-blue-700 w-36 dark:text-white"
+        <span class="text-lg font-bold text-blue-700 w-40 dark:text-white"
           >SCORE: {{ score }}/{{ questions.length }}
         </span>
       </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+      <div class="w-full bg-gray-200 rounded-full h-2.5 bg-gray-300">
         <div
-          class="bg-blue-600 h-2.5 rounded-full"
+          class="bg-red-500 h-2.5 rounded-full"
           :style="{
             width: ((currentQuestionIndex + 1) / questions.length) * 100 + '%',
           }"
@@ -40,7 +40,7 @@
       <button
         v-if="currentQuestionIndex < questions.length - 1"
         @click="nextQuestion"
-        class="btn my-4 w-32 font-bold text-lg"
+        class="btn my-4 w-32 font-bold text-lg bg-pink-300 hover:bg-pink-500"
       >
         Next
       </button>
@@ -48,7 +48,7 @@
       <button
         v-else
         @click="finishQuiz"
-        class="btn my-4 w-32 font-bold text-lg"
+        class="btn my-4 w-32 font-bold text-lg bg-pink-300 hover:bg-pink-500"
       >
         FINISH
       </button>

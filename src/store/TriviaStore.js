@@ -5,7 +5,8 @@ export const useTriviaStore = defineStore({
   id: 'user',
   state: () => ({
     triviaQuestions: [],
-    selectedOption: null
+    selectedOption: null,
+    resultsArray: []
 
   }),
   getters: {
@@ -14,6 +15,9 @@ export const useTriviaStore = defineStore({
    },
    getSelectedOption(){
     return this.selectedOption
+   },
+   getResultsArray(){
+    return this.resultsArray
    }
   },
   actions: {
@@ -23,6 +27,12 @@ export const useTriviaStore = defineStore({
     },
     setSelectedOption(option){
       this.selectedOption = option
+    },
+    setResultsArray(arr){
+      this.resultsArray.push(arr)
+    },
+    resetResultsArray(){
+      this.resultsArray = []
     }
 
   },

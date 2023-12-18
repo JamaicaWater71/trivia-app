@@ -13,6 +13,9 @@
 </template>
 <script setup>
 import { onMounted, ref, watch } from "vue";
+import { useTriviaStore } from "../store/TriviaStore";
+
+const store = useTriviaStore();
 const { question } = defineProps(["question"]);
 const decoded = ref([]);
 const shuffledChoices = ref([]);
@@ -50,9 +53,8 @@ const shuffle = (array) => {
 const selectedChoice = (answer) => {
   if (!hasAnswered.value) {
     selectedAnswer.value = answer;
+    store.setSelectedOption(selectedAnswer.value);
   }
-  console.log(answer);
-  console.log(selectedAnswer.value);
   hasAnswered.value = true;
 };
 

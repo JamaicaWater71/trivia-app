@@ -1,8 +1,8 @@
 <template>
-  <div class="trivia w-full h-full flex justify-center bg-violet-100">
+  <div class="trivia w-full h-screen flex justify-center bg-violet-100">
     <div
       v-if="questions.length > 0"
-      class="w-11/12 height-5/6 min-height-5/6 mt-8 flex flex-col items-center justify-start rounded-md"
+      class="w-11/12 h-full min-height-5/6 mt-8 flex flex-col items-center justify-start rounded-md"
     >
       <!-- Progress bar -->
       <div class="flex justify-between mb-1 w-full">
@@ -21,14 +21,15 @@
           }"
         ></div>
       </div>
+      <!-- Question -->
       <div
-        class="question w-full h-32 bg-violet-600 text-white p-2 my-4 rounded-md"
+        class="question w-full h-32 font-bold text-lg text-white bg-violet-600 p-2 my-4 rounded-md"
       >
         {{ questions[currentQuestionIndex].question }}
       </div>
-      <!-- You can add your answer options here -->
+      <!-- Answer Options -->
       <div
-        class="choices-container bg-violet-600 w-full flex justify-center rounded-md"
+        class="choices-container h-2/4 bg-violet-600 w-full flex justify-center rounded-md py-8"
       >
         <AnswerChoices
           :question="questions[currentQuestionIndex]"

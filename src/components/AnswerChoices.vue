@@ -3,7 +3,7 @@
     <div
       v-for="(option, index) in shuffledChoices"
       :key="index"
-      class="options h-12 w-full bg-violet-200 my-4 rounded-md flex items-center px-4"
+      class="options h-12 w-full font-semibold bg-violet-200 my-4 rounded-md flex items-center px-4"
       :class="getClass(option)"
       @click="selectedChoice(option)"
     >

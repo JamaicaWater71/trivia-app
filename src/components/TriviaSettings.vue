@@ -1,7 +1,7 @@
 <template>
   <div class="container flex flex-col items-center">
     <details class="dropdown w-2/3 mt-4" ref="dropdownDetails1">
-      <summary class="m-1 btn w-full h-16">
+      <summary class="m-1 btn w-full h-16 text-lg">
         Select Number of Questions: {{ selectedAmount }}
       </summary>
       <ul
@@ -11,7 +11,7 @@
           v-for="n in questionAmount"
           :key="n"
           @click="closeDropdown(n)"
-          class="text-center"
+          class="text-center font-semibold"
         >
           <a>{{ n }}</a>
         </li>
@@ -19,7 +19,7 @@
     </details>
     <!-- GENRE DROPDOWN -->
     <details class="dropdown w-2/3 mt-8" ref="dropdownDetails2">
-      <summary class="m-1 btn w-full h-16">
+      <summary class="m-1 btn w-full h-16 text-lg">
         Select Genre: {{ selectedGenre.name }}
       </summary>
       <ul
@@ -29,14 +29,14 @@
           v-for="genre in triviaGenres"
           :key="genre.id"
           @click="closeDropdown2(genre)"
-          class="py-2 text-center cursor-pointer hover:bg-gray-200 rounded-md"
+          class="py-2 text-center font-semibold cursor-pointer hover:bg-gray-200 rounded-md"
         >
           <a>{{ genre.name }}</a>
         </li>
       </ul>
     </details>
     <details class="dropdown w-2/3 mt-8" ref="dropdownDetails3">
-      <summary class="m-1 btn w-full h-16">
+      <summary class="m-1 btn w-full h-16 text-lg">
         Select Difficulty: {{ selectedDifficulty }}
       </summary>
       <ul
@@ -46,7 +46,7 @@
           v-for="d in difficulty"
           :key="d"
           @click="closeDropdown3(d)"
-          class="text-center"
+          class="text-center font-semibold"
         >
           <a>{{ d }}</a>
         </li>

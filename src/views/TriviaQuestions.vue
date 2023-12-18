@@ -1,14 +1,27 @@
 <template>
-  <div class="trivia">
-    <h1>Trivia Questions</h1>
-    <div v-if="questions.length > 0">
-      <div class="question">
+  <div class="trivia w-full h-full flex justify-center bg-violet-100">
+    <div
+      v-if="questions.length > 0"
+      class="w-11/12 height-5/6 min-height-5/6 mt-8 flex flex-col items-center justify-between rounded-md"
+    >
+      <div
+        class="question w-full h-32 bg-violet-600 text-white p-2 my-4 rounded-md"
+      >
         {{ questions[currentQuestionIndex].question }}
       </div>
       <!-- You can add your answer options here -->
+      <div
+        class="choices-container bg-violet-600 w-full flex justify-center rounded-md"
+      >
+        <AnswerChoices
+          :question="questions[currentQuestionIndex]"
+          :key="currentQuestionIndex"
+        />
+      </div>
       <button
         v-if="currentQuestionIndex < questions.length - 1"
         @click="nextQuestion"
+        class="btn my-4"
       >
         Next
       </button>
@@ -24,14 +37,17 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useTriviaStore } from "../store/TriviaStore";
+import AnswerChoices from "../components/AnswerChoices.vue";
 
 const store = useTriviaStore();
 const router = useRouter();
 const questions = ref([]);
+const answerChoices = ref([]);
 const currentQuestionIndex = ref(0);
 
 onMounted(() => {
   questions.value = store.getQuestions;
+  // answerChoices.value = [...]
 });
 
 function nextQuestion() {
@@ -40,9 +56,27 @@ function nextQuestion() {
   }
 }
 
+function shuffle(array) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function finishQuiz() {
-  // Handle the completion of the quiz, perhaps navigate to a results page or show a summary
-  // For example:
   router.push("/results");
 }
 </script>

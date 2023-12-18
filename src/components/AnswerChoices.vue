@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { ref } from "vue";
 import { useTriviaStore } from "../store/TriviaStore";
 
 const store = useTriviaStore();
@@ -62,6 +62,11 @@ const selectedChoice = (answer) => {
       emit("questionResult", "incorrect");
     }
     store.setSelectedOption(selectedAnswer.value);
+    store.setResultsArray({
+      question: question.question,
+      correct: correctAnswer.value,
+      selected: selectedAnswer.value,
+    });
     hasAnswered.value = true;
   }
 };

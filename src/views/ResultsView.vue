@@ -1,11 +1,19 @@
 <template>
-  <div class="container w-11/12 my-8 h-screen">
+  <div
+    class="container w-ful my-8 h-screen bg-gray-200 flex flex-col items-center"
+  >
     <h1 class="text-center text-xl font-bold p-4">Results</h1>
-    <div class="question-container h-3/4 overflow-y-scroll">
+    <div class="score w-10/12 text-lg my-2 font-bold">
+      <span>Final Score</span> {{ calculateScore(resultsArray) }}/{{
+        resultsArray.length
+      }}
+    </div>
+    <!-- Questions summary -->
+    <div class="question-container w-10/12 h-3/4 overflow-y-scroll">
       <div
         v-for="(q, index) in resultsArray"
         :key="index"
-        class="card my-4 py-4 bg-violet-200"
+        class="card w-full my-4 py-4 bg-violet-200"
       >
         <div class="question px-4 font-bold py-2">
           #{{ index + 1 }} {{ q.question }}
@@ -22,7 +30,10 @@
       </div>
     </div>
     <div class="flex justify-center">
-      <button @click="playAgain" class="btn my-4 w-40 font-bold text-lg">
+      <button
+        @click="playAgain"
+        class="btn my-4 w-40 font-bold text-lg bg-pink-300 hover:bg-pink-500"
+      >
         PLAY AGAIN
       </button>
     </div>
@@ -38,6 +49,16 @@ const resultsArray = store.getResultsArray;
 const playAgain = () => {
   store.resetResultsArray();
   router.push("/");
+};
+
+const calculateScore = (arr) => {
+  let c = 0;
+  arr.forEach((question) => {
+    if (question.selected === question.correct) {
+      c += 1;
+    }
+  });
+  return c;
 };
 </script>
 <style scoped></style>

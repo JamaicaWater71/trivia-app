@@ -40,11 +40,18 @@
       <button
         v-if="currentQuestionIndex < questions.length - 1"
         @click="nextQuestion"
-        class="btn my-4"
+        class="btn my-4 w-32 font-bold text-lg"
       >
         Next
       </button>
-      <button v-else @click="finishQuiz">Finish</button>
+      <!-- <button v-else @click="finishQuiz">Finish</button> -->
+      <button
+        v-else
+        @click="finishQuiz"
+        class="btn my-4 w-32 font-bold text-lg"
+      >
+        FINISH
+      </button>
     </div>
     <div v-else>
       <p>Loading questions...</p>
